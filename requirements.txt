@@ -1,0 +1,10 @@
+Wymagania:
+    -tkinter dla pythona 3
+    -python 3
+    -internet
+    -distro z rodziny debiana
+
+Instrukcje instalacji:
+    -Python 3: sudo apt install python3
+    -Biblioteka Tkinter: sudo apt install python3-tk
+
