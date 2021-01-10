@@ -13,7 +13,6 @@ root.geometry("400x300")
 root.config(bg="#f0f0f0")
 class vars():
     is_launched = False
-    dist = str(distro.linux_distribution())
     inf = font.Font(family="Ubuntu Thin", size=5)
     titlefont = font.Font(family="Ubuntu Thin", size=20)
     font1 = font.Font(family="Ubuntu Thin", size=10)
@@ -40,13 +39,9 @@ def check():
     if vars.connection == 0:
         is_root = os.getuid()
         if is_root == 0:
-            if "Mint" in vars.dist or "buntu" in vars.dist or "Debian" in vars.dist or "Mx" in vars.dist:
-                if vars.is_launched == False:
-                    vars.is_launched = True
-                    launch()
-            else:
-                messagebox.showerror("Błąd", "Twoja dystrybucja nie pochodzi od Debiana. Kernel nie zostanie zaktualizowany.")
-                root.destroy()
+            if vars.is_launched == False:
+                vars.is_launched = True
+                launch()
         else:
             messagebox.showerror("Błąd", "Musisz być super-użytkownikiem, aby skorzystać z aktualizatora. Spróbuj uruchomić ten program jako root używając polecenia 'sudo'")
             root.destroy()
@@ -63,7 +58,7 @@ def kernel_update():
     print("OK\n\n")
     print("installing update...")
     os.system("sudo install ubuntu-mainline-kernel.sh /usr/local/bin/")
-    os.system("sudo ubuntu-mainline-kernel.sh -i -f")
+    os.system("sudo ubuntu-mainline-kernel.sh -i --yes")
     print("\nOK\n\n")
     messagebox.showinfo("Informacja", "Pomyślnie zaktualizowano jądro linuxa, uruchom ponownie komputer, aby zastosować zmiany. Jeżeli wersja jądra pozostaje bez zmian, uruchom ponownie narzędzie do aktualizowania jądra i spróbuj ponownie.")
     root.destroy()
